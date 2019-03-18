@@ -191,6 +191,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -310,7 +320,7 @@
 <h2 id="3-更换主题"><a href="#3-更换主题" class="headerlink" title="3.更换主题"></a>3.更换主题</h2><p><img src="../images/old_theme.png" alt=""><br>当我们看到如上界面时，内心是奔溃的这完全不符合我的高逼格。经过一番谷歌百度找到了<a href="http://theme-next.iissnan.com/theme-settings.html" target="_blank" rel="noopener">next</a>主题</p>
 <p>在 Hexo 中有两份主要的配置文件，其名称都是 _config.yml。 其中，一份位于站点根目录下，主要包含 Hexo 本身的配置；另一份位于主题目录下，这份配置由主题作者提供，主要用于配置主题相关的选项。<br>为了描述方便，在以下说明中，将前者称为<code>站点配置文件</code>， 后者称为<code>主题配置文件</code><br>1、 下载主题<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> your-hexo-site</span><br><span class="line">$ git <span class="built_in">clone</span> https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure></p>
 <p>2、 启用主题<br>与所有 Hexo 主题启用的模式一样。 当 克隆/下载 完成后，打开<code>站点配置文件</code>， 找到 theme 字段，并将其值更改为 next。<br>此刻大功告成（ps:其他配置参考相关文档）</p>
-<h2 id="4-绑定github"><a href="#4-绑定github" class="headerlink" title="4.绑定github"></a>4.绑定github</h2><p>1.在github上 新建一个 repository 名字（springlee.github.io）建议起名字和自己的github重名<br>2.在</p>
+<h2 id="4-绑定github"><a href="#4-绑定github" class="headerlink" title="4.绑定github"></a>4.绑定github</h2><p>1.在github上 新建一个 repository 名字（springlee.github.io）建议起名字和自己的github重名<br>2.部署<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo: https://github.com/springlee/springlee.github.io.git</span><br><span class="line">  branch: master</span><br><span class="line">  message:</span><br></pre></td></tr></table></figure></p>
 
           
         
