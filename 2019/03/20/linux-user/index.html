@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="接上一篇文章，将server节点下的location节点中的proxy_pass配置为：http:// + upstream名称，即“http://spinglee”.   1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253# 通过 gzip 压缩页面g">
+<meta name="description" content="用户账号文件 - passwd用于保存用户的帐号基本信息，文件位置：/etc/passwd 每一行对应一个用户的帐号记录  123456789101112131415161718192021222324root:x:0:0:root:/root:/bin/bashdaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologinbin:x:2:2:bin:/bin:/u">
 <meta name="keywords" content="springlee">
 <meta property="og:type" content="article">
-<meta property="og:title" content="nginx  常用配置(转)">
-<meta property="og:url" content="http://yoursite.com/2019/03/20/nginx-params/index.html">
+<meta property="og:title" content="Linux 用户详解">
+<meta property="og:url" content="http://yoursite.com/2019/03/20/linux-user/index.html">
 <meta property="og:site_name" content="一叶知秋">
-<meta property="og:description" content="接上一篇文章，将server节点下的location节点中的proxy_pass配置为：http:// + upstream名称，即“http://spinglee”.   1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253# 通过 gzip 压缩页面g">
+<meta property="og:description" content="用户账号文件 - passwd用于保存用户的帐号基本信息，文件位置：/etc/passwd 每一行对应一个用户的帐号记录  123456789101112131415161718192021222324root:x:0:0:root:/root:/bin/bashdaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologinbin:x:2:2:bin:/bin:/u">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-20T01:35:54.618Z">
+<meta property="og:updated_time" content="2019-03-20T02:21:56.609Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="nginx  常用配置(转)">
-<meta name="twitter:description" content="接上一篇文章，将server节点下的location节点中的proxy_pass配置为：http:// + upstream名称，即“http://spinglee”.   1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253# 通过 gzip 压缩页面g">
+<meta name="twitter:title" content="Linux 用户详解">
+<meta name="twitter:description" content="用户账号文件 - passwd用于保存用户的帐号基本信息，文件位置：/etc/passwd 每一行对应一个用户的帐号记录  123456789101112131415161718192021222324root:x:0:0:root:/root:/bin/bashdaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologinbin:x:2:2:bin:/bin:/u">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/20/nginx-params/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/03/20/linux-user/"/>
 
 
 
 
 
-  <title>nginx  常用配置(转) | 一叶知秋</title>
+  <title>Linux 用户详解 | 一叶知秋</title>
   
 
 
@@ -243,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/20/nginx-params/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/20/linux-user/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="springlee">
@@ -260,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">nginx  常用配置(转)</h1>
+          <h1 class="post-title" itemprop="name headline">Linux 用户详解</h1>
         
 
         <div class="post-meta">
@@ -272,7 +272,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-20T10:39:20+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-20T11:39:20+08:00">
                 2019-03-20
               </time>
             
@@ -310,30 +310,44 @@
       
 
       
-        <ul>
-<li>接上一篇文章，将server节点下的location节点中的proxy_pass配置为：http:// + upstream名称，即“<a href="http://spinglee”" target="_blank" rel="noopener">http://spinglee”</a>.</li>
+        <p>用户账号文件 - passwd<br>用于保存用户的帐号基本信息，文件位置：/etc/passwd</p>
+<p>每一行对应一个用户的帐号记录 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">root:x:0:0:root:/root:/bin/bash</span><br><span class="line">daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin</span><br><span class="line">bin:x:2:2:bin:/bin:/usr/sbin/nologin</span><br><span class="line">sys:x:3:3:sys:/dev:/usr/sbin/nologin</span><br><span class="line">sync:x:4:65534:sync:/bin:/bin/sync</span><br><span class="line">games:x:5:60:games:/usr/games:/usr/sbin/nologin</span><br><span class="line">man:x:6:12:man:/var/cache/man:/usr/sbin/nologin</span><br><span class="line">lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin</span><br><span class="line">mail:x:8:8:mail:/var/mail:/usr/sbin/nologin</span><br><span class="line">news:x:9:9:news:/var/spool/news:/usr/sbin/nologin</span><br><span class="line">uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin</span><br><span class="line">proxy:x:13:13:proxy:/bin:/usr/sbin/nologin</span><br><span class="line">www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin</span><br><span class="line">backup:x:34:34:backup:/var/backups:/usr/sbin/nologin</span><br><span class="line">list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin</span><br><span class="line">irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin</span><br><span class="line">gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/u    sr/sbin/nologin</span><br><span class="line">nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin</span><br><span class="line">systemd-timesync:x:100:103:systemd Time Synchronization,,,:/run/sy    stemd:/bin/false</span><br><span class="line">systemd-network:x:101:104:systemd Network Management,,,:/run/syste    md/netif:/bin/false</span><br><span class="line">systemd-resolve:x:102:105:systemd Resolver,,,:/run/systemd/resolve    :/bin/false</span><br><span class="line">systemd-bus-proxy:x:103:106:systemd Bus Proxy,,,:/run/systemd:/bin    /false</span><br><span class="line">pi:x:1000:1000:,,,:/home/pi:/bin/bash</span><br><span class="line">messagebus:x:104:109::/var/run/dbus:/bin/false</span><br></pre></td></tr></table></figure>
+<ul>
+<li>字段1：用户帐号的名称</li>
+<li>字段2：用户密码字串或者密码占位符“x”</li>
+<li>字段3：用户帐号的UID号</li>
+<li>字段4：所属基本组帐号的GID号</li>
+<li>字段5：用户全名</li>
+<li>字段6：宿主目录</li>
+<li>字段7：登录Shell信息</li>
 </ul>
-<hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"># 通过 gzip 压缩页面</span><br><span class="line">gzip on;</span><br><span class="line">gzip_min_length 1k;</span><br><span class="line">gzip_buffers 4 16k;</span><br><span class="line">#gzip_http_version 1.0;</span><br><span class="line">gzip_comp_level 2;</span><br><span class="line">gzip_types text/plain application/javascript application/x-javascript text/css application/xml text/javascript application/x-httpd-php image/jpeg image/gif image/png;</span><br><span class="line">gzip_vary off;</span><br><span class="line">gzip_disable &quot;MSIE [1-6]\.&quot;;</span><br><span class="line"></span><br><span class="line">upstream springlee &#123;</span><br><span class="line">    # 通过 IP:Port 连接</span><br><span class="line">    server 127.0.0.1:5200 weight=5 max_fails=3 fail_timeout=30s;</span><br><span class="line">    # 通过 UnixSocket Stream 连接，小诀窍：将socket文件放在/dev/shm目录下，可获得更好的性能</span><br><span class="line">    #server unix:/xxxpath/laravel-s-test/storage/laravels.sock weight=5 max_fails=3 fail_timeout=30s;</span><br><span class="line">    #server 192.168.1.1:5200 weight=3 max_fails=3 fail_timeout=30s;</span><br><span class="line">    #server 192.168.1.2:5200 backup;</span><br><span class="line">    keepalive 16;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    # 别忘了绑Host哟</span><br><span class="line">    server_name springlee.com;</span><br><span class="line">    root /xxxpath/laravel-s-test/public;</span><br><span class="line">    access_log /yyypath/log/nginx/$server_name.access.log  main;</span><br><span class="line">    autoindex off;</span><br><span class="line">    index index.html index.htm;</span><br><span class="line">    # Nginx处理静态资源(建议开启gzip)，springlee处理动态资源。</span><br><span class="line">    location / &#123;</span><br><span class="line">        try_files $uri $uri/ @springlee;</span><br><span class="line">    &#125;</span><br><span class="line">    # 当请求PHP文件时直接响应404，防止暴露public/*.php</span><br><span class="line">    #location ~* \.php$ &#123;</span><br><span class="line">    #    return 404;</span><br><span class="line">    #&#125;</span><br><span class="line">    location @laravels &#123;</span><br><span class="line">        # proxy_connect_timeout 60s;</span><br><span class="line">        # proxy_send_timeout 60s;</span><br><span class="line">        # proxy_read_timeout 120s;</span><br><span class="line">        proxy_http_version 1.1;</span><br><span class="line">        proxy_set_header Connection &quot;&quot;;</span><br><span class="line">        proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">        proxy_set_header X-Real-PORT $remote_port;</span><br><span class="line">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">        proxy_set_header Host $http_host;</span><br><span class="line">        proxy_set_header Scheme $scheme;</span><br><span class="line">        proxy_set_header Server-Protocol $server_protocol;</span><br><span class="line">        proxy_set_header Server-Name $server_name;</span><br><span class="line">        proxy_set_header Server-Addr $server_addr;</span><br><span class="line">        proxy_set_header Server-Port $server_port;</span><br><span class="line">        proxy_pass http://springlee;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Gzip-参数说明"><a href="#Gzip-参数说明" class="headerlink" title="Gzip 参数说明"></a>Gzip 参数说明</h2><ul>
-<li><p>第1行：开启Gzip</p>
+<p>shadow<br>用于保存密码字串、密码有效期等信息，文件位置：/etc/shadow<br>每一行对应一个用户的密码记录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">root:$6$jEF6k6wr$0MM62Y.oofWi7FXthvvkALCgS9ruD0FdgzM804XDFG8DxncR8    LlwInRwoJk40UN9iCinXtbeHb57pJ1wuBSot0:17366:0:99999:7:::</span><br><span class="line">daemon:*:17352:0:99999:7:::</span><br><span class="line">bin:*:17352:0:99999:7:::</span><br><span class="line">sys:*:17352:0:99999:7:::</span><br><span class="line">sync:*:17352:0:99999:7:::</span><br><span class="line">games:*:17352:0:99999:7:::</span><br><span class="line">man:*:17352:0:99999:7:::</span><br><span class="line">lp:*:17352:0:99999:7:::</span><br><span class="line">mail:*:17352:0:99999:7:::</span><br><span class="line">news:*:17352:0:99999:7:::</span><br><span class="line">uucp:*:17352:0:99999:7:::</span><br><span class="line">proxy:*:17352:0:99999:7:::</span><br><span class="line">www-data:*:17352:0:99999:7:::</span><br><span class="line">backup:*:17352:0:99999:7:::</span><br><span class="line">list:*:17352:0:99999:7:::</span><br><span class="line">irc:*:17352:0:99999:7:::</span><br><span class="line">gnats:*:17352:0:99999:7:::</span><br><span class="line">nobody:*:17352:0:99999:7:::</span><br><span class="line">systemd-timesync:*:17352:0:99999:7:::</span><br><span class="line">systemd-network:*:17352:0:99999:7:::</span><br><span class="line">systemd-resolve:*:17352:0:99999:7:::</span><br><span class="line">systemd-bus-proxy:*:17352:0:99999:7:::</span><br><span class="line">pi:$6$J9HYz.1a$jZfOFQhtFT7el0/iUV2Z3egUxwtAk3SlzV5EGEe/gKuj68WALIY    4rmI9WCBK5a0lyU463ecf6WxAyzMUrqMRM1:17352:0:99999:7:::</span><br><span class="line">messagebus:*:17352:0:99999:7:::</span><br><span class="line">avahi:*:17352:0:99999:7:::</span><br><span class="line">ntp:*:17352:0:99999:7:::</span><br><span class="line">sshd:*:17352:0:99999:7:::</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>字段1：用户帐号的名称</li>
+<li>字段2：加密的密码字串信息</li>
+<li>字段3：上次修改密码的时间</li>
+<li>字段4：密码的最短有效天数，默认值为0</li>
+<li>字段5：密码的最长有效天数，默认值为99999 </li>
+</ul>
+<p>useradd命令<br>格式：useradd [选项]… 用户名<br>常用命令选项<br>-u：指定 UID 标记号<br>-d：指定宿主目录，缺省为 /home/用户名<br>-e：指定帐号失效时间<br>-g：指定用户的基本组名（或UID号）<br>-G：指定用户的附加组名（或GID号）<br>-M：不为用户建立并初始化宿主目录<br>-s：指定用户的登录Shell </p>
+<p>主要的用户初始配置文件<br>~/.bash_profile：用户每次登录时执行<br>~/.bashrc：每次进入新的Bash环境时执行<br>~/.bash_logout：用户每次退出登录时执行 </p>
+<ul>
+<li>passwd命令<br>格式：passwd [选项]… 用户名 </li>
+</ul>
+<p>常用命令选项<br>-d：清空用户的密码，使之无需密码即可登录<br>-l：锁定用户帐号<br>-S：查看用户帐号的状态（是否被锁定）<br>-u：解锁用户帐号</p>
+<ul>
+<li>userdel命令<br>格式：userdel [-r] 用户名<br>添加 -r 选项时，表示连用户的宿主目录一并删除 </li>
+</ul>
+<ul>
+<li><p>group、gshadow<br>与用户帐号文件相类似<br>/etc/group：保存组帐号基本信息<br>/etc/gshadow：保存组帐号的密码信息</p>
 </li>
-<li><p>第2行：不压缩临界值，大于1K的才压缩，一般不用改</p>
+<li><p>groupadd<br>格式：groupadd [-g GID] 组帐号名</p>
 </li>
-<li><p>第3行：buffer，就是，嗯，算了不解释了，不用改</p>
-</li>
-<li><p>第4行：用了反向代理的话，末端通信是HTTP/1.0，有需求的应该也不用看我这科普文了；有这句的话注释了就行了，默认是HTTP/1.1</p>
-</li>
-<li><p>第5行：压缩级别，1-10，数字越大压缩的越好，时间也越长，看心情随便改吧</p>
-</li>
-<li><p>第6行：进行压缩的文件类型，缺啥补啥就行了，JavaScript有两种写法，最好都写上吧，总有人抱怨js文件没有压缩，其实多写一种格式application/javascript 就行了</p>
-</li>
-<li><p>第7行：跟Squid等缓存服务有关，on的话会在Header里增加”Vary: Accept-Encoding”，我不需要这玩意，自己对照情况看着办吧</p>
-</li>
-<li><p>第8行：IE6对Gzip不怎么友好，不给它Gzip了</p>
+<li><p>gpasswd命令<br>用途：设置组帐号密码（极少用）、添加/删除组成员<br>格式：gpasswd [选项]… 组帐号名 </p>
 </li>
 </ul>
-<h2 id="Nginx-参数说明"><a href="#Nginx-参数说明" class="headerlink" title="Nginx 参数说明"></a>Nginx 参数说明</h2>
+
       
     </div>
     
@@ -357,8 +371,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/19/nginx-upstream/" rel="next" title="nginx 负载均衡">
-                <i class="fa fa-chevron-left"></i> nginx 负载均衡
+              <a href="/2019/03/20/nginx-params/" rel="next" title="nginx  常用配置(转)">
+                <i class="fa fa-chevron-left"></i> nginx  常用配置(转)
               </a>
             
           </div>
@@ -367,8 +381,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/20/linux-user/" rel="prev" title="Linux 用户详解">
-                Linux 用户详解 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/20/linux-permision/" rel="prev" title="Linux文件权限详解">
+                Linux文件权限详解 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -421,17 +435,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -493,22 +498,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Gzip-参数说明"><span class="nav-number">1.</span> <span class="nav-text">Gzip 参数说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx-参数说明"><span class="nav-number">2.</span> <span class="nav-text">Nginx 参数说明</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

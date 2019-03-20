@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Nginx配置upstream实现负载均衡假设Nginx没有只只能代理一台服务器的话，那它也不可能像今天这么火。Nginx能够配置代理多台服务器。当一台服务器宕机之后。仍能保持系统可用。详细配置步骤例如以下：  在http节点下，加入upstream节点。 1234upstream spinglee &amp;#123;       server 10.0.6.108:7080;       server">
+<meta name="description" content="用户组在linux中的每个用户必须属于一个组，不能独立于组外。在linux中每个文件有所有者、所在组、其它组的概念  所有者 所在组 其它组 改变用户所在的组  所有者一般为文件的创建者，谁创建了该文件，就天然的成为该文件的所有者 用ls ‐ahl命令可以看到文件的所有者 也可以使用chown 用户名 文件名来修改文件的所有者 文件所在组当某个用户创建了一个文件后，这个文件的所在组就是该用户所在的">
 <meta name="keywords" content="springlee">
 <meta property="og:type" content="article">
-<meta property="og:title" content="nginx 负载均衡">
-<meta property="og:url" content="http://yoursite.com/2019/03/19/nginx-upstream/index.html">
+<meta property="og:title" content="Linux文件权限详解">
+<meta property="og:url" content="http://yoursite.com/2019/03/20/linux-permision/index.html">
 <meta property="og:site_name" content="一叶知秋">
-<meta property="og:description" content="Nginx配置upstream实现负载均衡假设Nginx没有只只能代理一台服务器的话，那它也不可能像今天这么火。Nginx能够配置代理多台服务器。当一台服务器宕机之后。仍能保持系统可用。详细配置步骤例如以下：  在http节点下，加入upstream节点。 1234upstream spinglee &amp;#123;       server 10.0.6.108:7080;       server">
+<meta property="og:description" content="用户组在linux中的每个用户必须属于一个组，不能独立于组外。在linux中每个文件有所有者、所在组、其它组的概念  所有者 所在组 其它组 改变用户所在的组  所有者一般为文件的创建者，谁创建了该文件，就天然的成为该文件的所有者 用ls ‐ahl命令可以看到文件的所有者 也可以使用chown 用户名 文件名来修改文件的所有者 文件所在组当某个用户创建了一个文件后，这个文件的所在组就是该用户所在的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-20T01:34:34.234Z">
+<meta property="og:updated_time" content="2019-03-20T02:17:23.431Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="nginx 负载均衡">
-<meta name="twitter:description" content="Nginx配置upstream实现负载均衡假设Nginx没有只只能代理一台服务器的话，那它也不可能像今天这么火。Nginx能够配置代理多台服务器。当一台服务器宕机之后。仍能保持系统可用。详细配置步骤例如以下：  在http节点下，加入upstream节点。 1234upstream spinglee &amp;#123;       server 10.0.6.108:7080;       server">
+<meta name="twitter:title" content="Linux文件权限详解">
+<meta name="twitter:description" content="用户组在linux中的每个用户必须属于一个组，不能独立于组外。在linux中每个文件有所有者、所在组、其它组的概念  所有者 所在组 其它组 改变用户所在的组  所有者一般为文件的创建者，谁创建了该文件，就天然的成为该文件的所有者 用ls ‐ahl命令可以看到文件的所有者 也可以使用chown 用户名 文件名来修改文件的所有者 文件所在组当某个用户创建了一个文件后，这个文件的所在组就是该用户所在的">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/19/nginx-upstream/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/03/20/linux-permision/"/>
 
 
 
 
 
-  <title>nginx 负载均衡 | 一叶知秋</title>
+  <title>Linux文件权限详解 | 一叶知秋</title>
   
 
 
@@ -243,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/19/nginx-upstream/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/20/linux-permision/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="springlee">
@@ -260,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">nginx 负载均衡</h1>
+          <h1 class="post-title" itemprop="name headline">Linux文件权限详解</h1>
         
 
         <div class="post-meta">
@@ -272,8 +272,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-19T09:06:25+08:00">
-                2019-03-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-20T11:39:20+08:00">
+                2019-03-20
               </time>
             
 
@@ -310,52 +310,80 @@
       
 
       
-        <h2 id="Nginx配置upstream实现负载均衡"><a href="#Nginx配置upstream实现负载均衡" class="headerlink" title="Nginx配置upstream实现负载均衡"></a>Nginx配置upstream实现负载均衡</h2><p>假设Nginx没有只只能代理一台服务器的话，那它也不可能像今天这么火。Nginx能够配置代理多台服务器。当一台服务器宕机之后。仍能保持系统可用。详细配置步骤例如以下：</p>
+        <h2 id="用户组"><a href="#用户组" class="headerlink" title="用户组"></a>用户组</h2><p>在linux中的每个用户必须属于一个组，不能独立于组外。在linux中每个文件有所有者、所在组、其它组的概念</p>
 <ul>
-<li><p>在http节点下，加入upstream节点。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">upstream spinglee &#123; </span><br><span class="line">      server 10.0.6.108:7080; </span><br><span class="line">      server 10.0.0.85:8980; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>将server节点下的location节点中的proxy_pass配置为：http:// + upstream名称，即“<a href="http://spinglee”" target="_blank" rel="noopener">http://spinglee”</a>.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">location / &#123; </span><br><span class="line">               root  html; </span><br><span class="line">               index  index.html index.htm; </span><br><span class="line">               proxy_pass http://spinglee; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>所有者</li>
+<li>所在组</li>
+<li>其它组</li>
+<li>改变用户所在的组</li>
+</ul>
+<h2 id="所有者"><a href="#所有者" class="headerlink" title="所有者"></a>所有者</h2><p>一般为文件的创建者，谁创建了该文件，就天然的成为该文件的所有者</p>
+<p>用ls ‐ahl命令可以看到文件的所有者</p>
+<p>也可以使用chown 用户名 文件名来修改文件的所有者</p>
+<h2 id="文件所在组"><a href="#文件所在组" class="headerlink" title="文件所在组"></a>文件所在组</h2><p>当某个用户创建了一个文件后，这个文件的所在组就是该用户所在的组</p>
+<p>用ls ‐ahl命令可以看到文件的所有组</p>
+<p>也可以使用chgrp 组名 文件名来修改文件所在的组</p>
+<h2 id="其它组"><a href="#其它组" class="headerlink" title="其它组"></a>其它组</h2><p>除开文件的所有者和所在组的用户外，系统的其它用户都是文件的其它组</p>
+<p>ls</p>
+<p> -l中显示的内容如下：</p>
+<p><code>-rwxrw-r-- 1 root root 1213 Feb 2 09:39 abc</code></p>
 <ul>
-<li>如今负载均衡初步完毕了。upstream依照轮询（默认）方式进行负载，每一个请求按时间顺序逐一分配到不同的后端服务器。假设后端服务器down掉。能自己主动剔除。尽管这样的方式简便、成本低廉。但缺点是：可靠性低和负载分配不均衡。</li>
-</ul>
+<li><p>10个字符确定不同用户能对文件干什么</p>
+</li>
+<li><p>第一个字符代表文件（-）、目录（d），链接（l）</p>
+</li>
+<li><p>其余字符每3个一组（rwx），读（r）、写（w）、执行（x）</p>
+</li>
+<li><p>第一组rwx：文件所有者的权限是读、写和执行</p>
+</li>
+<li><p>第二组rw-：与文件所有者同一组的用户的权限是读、写但不能执行</p>
+</li>
+<li><p>第三组r–：不与文件所有者同组的其他用户的权限是读不能写和执行也可用数字表示为：r=4，w=2，x=1  因此rwx=4+2+1=7</p>
+</li>
+<li><p>1 表示连接的文件数</p>
+</li>
+<li><p>root 表示用户</p>
+</li>
+<li><p>root表示用户所在的组</p>
+</li>
+<li><p>1213 表示文件大小（字节）</p>
+</li>
+<li><p>Feb 2 09:39 表示最后修改日期</p>
+</li>
+<li><p>abc 表示文件名</p>
 </li>
 </ul>
-<p>适用于图片服务器集群和纯静态页面服务器集群。</p>
-<h2 id="除此之外，upstream还有其他的分配策略，分别例如以下："><a href="#除此之外，upstream还有其他的分配策略，分别例如以下：" class="headerlink" title="除此之外，upstream还有其他的分配策略，分别例如以下："></a>除此之外，upstream还有其他的分配策略，分别例如以下：</h2><ul>
-<li>weight（权重）<br>指定轮询几率，weight和訪问比率成正比，用于后端服务器性能不均的情况。例如以下所看到的。10.0.0.88的訪问比率要比10.0.0.77的訪问比率高一倍。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">upstream spinglee&#123; </span><br><span class="line">      server 10.0.0.77 weight=5; </span><br><span class="line">      server 10.0.0.88 weight=10; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="改变权限的命令"><a href="#改变权限的命令" class="headerlink" title="改变权限的命令"></a>改变权限的命令</h2><p>chmod 改变文件或目录的权限</p>
+<p>chmod 755 abc：赋予abc权限rwxr-xr-x</p>
+<p>chmod u=rwx，g=rx，o=rx abc：同上u=用户权限，g=组权限，o=不同组其他用户权限</p>
+<p>chmod u-x，g+w abc：给abc去除用户执行的权限，增加组写的权限</p>
+<p>chmod a+r abc：给所有用户添加读的权限</p>
+<h2 id="改变所有者（chown）和用户组（chgrp）命令"><a href="#改变所有者（chown）和用户组（chgrp）命令" class="headerlink" title="改变所有者（chown）和用户组（chgrp）命令"></a>改变所有者（chown）和用户组（chgrp）命令</h2><p>chown xiaoming abc：改变abc的所有者为xiaoming</p>
+<p>chgrp root abc：改变abc所属的组为root</p>
+<p>chown root ./abc：改变abc这个目录的所有者是root</p>
+<p>chown ‐R root ./abc：改变abc这个目录及其下面所有的文件和目录的所有者是root</p>
+<p>改变用户所在组</p>
+<p>在添加用户时，可以指定将该用户添加到哪个组中，同样用root的管理权限可以改变某个用户所在的组</p>
 <ul>
-<li><p>ip_hash（訪问ip）</p>
-<p>每一个请求按訪问ip的hash结果分配。这样每一个訪客固定訪问一个后端服务器，能够解决session的问题。</p>
-</li>
+<li>usermod ‐g 组名 用户名</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">upstream spinglee&#123; </span><br><span class="line">      ip_hash; </span><br><span class="line">      server 10.0.0.10:8080; </span><br><span class="line">      server 10.0.0.11:8080; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>你可以用</p>
 <ul>
-<li>fair（第三方）</li>
+<li>usermod ‐d 目录名 用户名，改变该用户登录的初始目录</li>
 </ul>
-<p>按后端服务器的响应时间来分配请求。响应时间短的优先分配。</p>
-<p>与weight分配策略相似。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> upstream spinglee&#123;      </span><br><span class="line">      server 10.0.0.10:8080; </span><br><span class="line">      server 10.0.0.11:8080; </span><br><span class="line">      fair; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>【参考】</p>
 <ul>
-<li>url_hash（第三方）</li>
-</ul>
-<p>按訪问url的hash结果来分配请求，使每一个url定向到同一个后端服务器。后端服务器为缓存时比較有效。</p>
-<p>注意：在upstream中加入hash语句。server语句中不能写入weight等其他的參数，hash_method是使用的hash算法。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">upstream spinglee&#123; </span><br><span class="line">      server 10.0.0.10:7777; </span><br><span class="line">      server 10.0.0.11:8888; </span><br><span class="line">      hash $request_uri; </span><br><span class="line">      hash_method crc32; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="upstream还能够为每一个设备设置状态值，这些状态值的含义分别例如以下："><a href="#upstream还能够为每一个设备设置状态值，这些状态值的含义分别例如以下：" class="headerlink" title="upstream还能够为每一个设备设置状态值，这些状态值的含义分别例如以下："></a>upstream还能够为每一个设备设置状态值，这些状态值的含义分别例如以下：</h2><ul>
-<li><p>down 表示单前的server临时不參与负载.</p>
+<li><p>groupadd 组名，在linux中添加组</p>
 </li>
-<li><p>weight 默觉得1.weight越大，负载的权重就越大。</p>
+<li><p>vi /etc/group，查看linux中所有组信息，可以看可以编辑</p>
 </li>
-<li><p>max_fails ：同意请求失败的次数默觉得1.当超过最大次数时，返回proxy_next_upstream 模块定义的错误.</p>
+<li><p>cat /etc/group，查看linux中所有组信息，只可以看不可以编辑</p>
 </li>
-<li><p>fail_timeout : max_fails次失败后。暂停的时间。</p>
+<li><p>useradd ‐g 组名 用户名，创建用户的同时指定将该用户分配到哪个组下</p>
 </li>
-<li><p>backup： 其他全部的非backup机器down或者忙的时候，请求backup机器。所以这台机器压力会最轻。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">upstream spinglee&#123; #定义负载均衡设备的Ip及设备状态 </span><br><span class="line">      ip_hash; </span><br><span class="line">      server 10.0.0.11:9090 down; </span><br><span class="line">      server 10.0.0.11:8080 weight=2; </span><br><span class="line">      server 10.0.0.11:6060; </span><br><span class="line">      server 10.0.0.11:7070 backup; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li><p>vi /etc/passwd，查看linux中所有用户信息，可以看可以编辑</p>
+</li>
+<li><p>cat /etc/passwd，查看linux中所有用户信息，只可以看不可以编辑</p>
 </li>
 </ul>
 
@@ -382,8 +410,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/03/hexo-github/" rel="next" title="基于Hexo+gitbub快速搭建自己的博客">
-                <i class="fa fa-chevron-left"></i> 基于Hexo+gitbub快速搭建自己的博客
+              <a href="/2019/03/20/linux-user/" rel="next" title="Linux 用户详解">
+                <i class="fa fa-chevron-left"></i> Linux 用户详解
               </a>
             
           </div>
@@ -391,10 +419,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/20/nginx-params/" rel="prev" title="nginx  常用配置(转)">
-                nginx  常用配置(转) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -528,7 +552,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx配置upstream实现负载均衡"><span class="nav-number">1.</span> <span class="nav-text">Nginx配置upstream实现负载均衡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#除此之外，upstream还有其他的分配策略，分别例如以下："><span class="nav-number">2.</span> <span class="nav-text">除此之外，upstream还有其他的分配策略，分别例如以下：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#upstream还能够为每一个设备设置状态值，这些状态值的含义分别例如以下："><span class="nav-number">3.</span> <span class="nav-text">upstream还能够为每一个设备设置状态值，这些状态值的含义分别例如以下：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#用户组"><span class="nav-number">1.</span> <span class="nav-text">用户组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#所有者"><span class="nav-number">2.</span> <span class="nav-text">所有者</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件所在组"><span class="nav-number">3.</span> <span class="nav-text">文件所在组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其它组"><span class="nav-number">4.</span> <span class="nav-text">其它组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改变权限的命令"><span class="nav-number">5.</span> <span class="nav-text">改变权限的命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改变所有者（chown）和用户组（chgrp）命令"><span class="nav-number">6.</span> <span class="nav-text">改变所有者（chown）和用户组（chgrp）命令</span></a></li></ol></div>
             
 
           </div>
