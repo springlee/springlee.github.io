@@ -79,24 +79,18 @@
 
 
 
-<meta name="description" content="Sentry 自动化异常提醒 这篇文章已经介绍的很清楚了，这里直接讲一讲搭建自己的 sentry 服务，这样就免费使用 sentry 这个服务。  1、 安装 docker首先要确认你的 Ubuntu 版本是否符合安装 Docker 的前提条件。如果没有问题，你可以通过下边的方式来安装 Docker ： 使用具有 sudo 权限的用户来登录你的 Ubuntu 。查看你是否安装了 wget  1$">
+<meta name="description" content="Nginx配置upstream实现负载均衡假设Nginx没有只只能代理一台服务器的话，那它也不可能像今天这么火。Nginx能够配置代理多台服务器。当一台服务器宕机之后。仍能保持系统可用。详细配置步骤例如以下：  在http节点下，加入upstream节点。 1234upstream spinglee &amp;#123;       server 10.0.6.108:7080;       server">
 <meta name="keywords" content="springlee">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sentry 自动化日志收集和监控系统搭建">
-<meta property="og:url" content="http://yoursite.com/2018/03/31/sentry-install/index.html">
+<meta property="og:title" content="nginx 负载均衡">
+<meta property="og:url" content="http://yoursite.com/2019/03/19/nginx-upstream/index.html">
 <meta property="og:site_name" content="一叶知秋">
-<meta property="og:description" content="Sentry 自动化异常提醒 这篇文章已经介绍的很清楚了，这里直接讲一讲搭建自己的 sentry 服务，这样就免费使用 sentry 这个服务。  1、 安装 docker首先要确认你的 Ubuntu 版本是否符合安装 Docker 的前提条件。如果没有问题，你可以通过下边的方式来安装 Docker ： 使用具有 sudo 权限的用户来登录你的 Ubuntu 。查看你是否安装了 wget  1$">
+<meta property="og:description" content="Nginx配置upstream实现负载均衡假设Nginx没有只只能代理一台服务器的话，那它也不可能像今天这么火。Nginx能够配置代理多台服务器。当一台服务器宕机之后。仍能保持系统可用。详细配置步骤例如以下：  在http节点下，加入upstream节点。 1234upstream spinglee &amp;#123;       server 10.0.6.108:7080;       server">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://lccdn.phphub.org/uploads/images/201703/29/5978/cl5ribeIo5.png">
-<meta property="og:image" content="https://lccdn.phphub.org/uploads/images/201703/29/5978/MI7aJM7jbz.png">
-<meta property="og:image" content="https://lccdn.phphub.org/uploads/images/201703/29/5978/KqiVNsRUJb.png">
-<meta property="og:image" content="https://lccdn.phphub.org/uploads/images/201703/29/5978/XRkeqwvTDh.png">
-<meta property="og:image" content="https://lccdn.phphub.org/uploads/images/201703/29/5978/C480PIRJ5n.png">
-<meta property="og:updated_time" content="2018-03-31T04:40:06.000Z">
+<meta property="og:updated_time" content="2019-03-20T01:34:34.234Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="sentry 自动化日志收集和监控系统搭建">
-<meta name="twitter:description" content="Sentry 自动化异常提醒 这篇文章已经介绍的很清楚了，这里直接讲一讲搭建自己的 sentry 服务，这样就免费使用 sentry 这个服务。  1、 安装 docker首先要确认你的 Ubuntu 版本是否符合安装 Docker 的前提条件。如果没有问题，你可以通过下边的方式来安装 Docker ： 使用具有 sudo 权限的用户来登录你的 Ubuntu 。查看你是否安装了 wget  1$">
-<meta name="twitter:image" content="https://lccdn.phphub.org/uploads/images/201703/29/5978/cl5ribeIo5.png">
+<meta name="twitter:title" content="nginx 负载均衡">
+<meta name="twitter:description" content="Nginx配置upstream实现负载均衡假设Nginx没有只只能代理一台服务器的话，那它也不可能像今天这么火。Nginx能够配置代理多台服务器。当一台服务器宕机之后。仍能保持系统可用。详细配置步骤例如以下：  在http节点下，加入upstream节点。 1234upstream spinglee &amp;#123;       server 10.0.6.108:7080;       server">
 
 
 
@@ -126,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/03/31/sentry-install/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/03/19/nginx-upstream/"/>
 
 
 
 
 
-  <title>sentry 自动化日志收集和监控系统搭建 | 一叶知秋</title>
+  <title>nginx 负载均衡 | 一叶知秋</title>
   
 
 
@@ -249,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/31/sentry-install/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/19/nginx-upstream/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="springlee">
@@ -266,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">sentry 自动化日志收集和监控系统搭建</h1>
+          <h1 class="post-title" itemprop="name headline">nginx 负载均衡</h1>
         
 
         <div class="post-meta">
@@ -278,8 +272,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-31T11:56:45+08:00">
-                2018-03-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-19T09:06:25+08:00">
+                2019-03-19
               </time>
             
 
@@ -316,51 +310,54 @@
       
 
       
-        <p><a href="https://laravel-china.org/articles/4235/sentry-automation-exception-alert" target="_blank" rel="noopener">Sentry 自动化异常提醒</a> 这篇文章已经介绍的很清楚了，这里直接讲一讲搭建自己的 <code>sentry</code> 服务，这样就免费使用 <code>sentry</code> 这个服务。 </p>
-<h2 id="1、-安装-docker"><a href="#1、-安装-docker" class="headerlink" title="1、 安装 docker"></a>1、 安装 docker</h2><p>首先要确认你的 Ubuntu 版本是否符合安装 Docker 的前提条件。如果没有问题，你可以通过下边的方式来安装 Docker ： 使用具有 sudo 权限的用户来登录你的 Ubuntu 。<br>查看你是否安装了 wget </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">which</span> wget</span><br></pre></td></tr></table></figure>
-<p>如果 wget 没有安装，先升级包管理器，然后再安装它。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get update</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install wget</span><br></pre></td></tr></table></figure>
-<p>获取最新版本的 Docker 安装包<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wget -qO- https://get.docker.com/ | sh</span><br></pre></td></tr></table></figure></p>
-<p>系统会提示你输入sudo密码，输入完成之后，就会下载脚本并且安装 Docker 及依赖包。</p>
-<p>可以查看版本号并确认是否安装成功。<br>由于某种神秘原因国内无法直接从 docker 官方库直接获取镜像 这里我们使用 <a href="https://www.daocloud.io/mirror#accelerator-doc" target="_blank" rel="noopener">Docker 加速器</a> 运行下面命令即可。<br> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://4031ebb7.m.daocloud.io</span><br></pre></td></tr></table></figure></p>
-<h2 id="2、安装-docker-compose"><a href="#2、安装-docker-compose" class="headerlink" title="2、安装 docker-compose"></a>2、安装 docker-compose</h2><p>这里推荐使用 Python 的 pip 管理工具来安装 docker-compose</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pip install -U docker-compose</span><br></pre></td></tr></table></figure>
-<p>到这里安装就结束了;Compose 已经安装完成。你可以使用<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose --version</span><br></pre></td></tr></table></figure></p>
-<p>来进行测试</p>
-<h2 id="3、-正式搭建sentry"><a href="#3、-正式搭建sentry" class="headerlink" title="3、 正式搭建sentry"></a>3、 正式搭建sentry</h2><p>做完了准备工作，就可以开始搭建sentry了。</p>
-<p>从 <a href="https://github.com/getsentry/onpremise" target="_blank" rel="noopener">GitHub</a> 上面获取最新的 sentry</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/getsentry/onpremise.git</span><br></pre></td></tr></table></figure>
-<p>获取到本地之后，就可以根据他的README.md开始着手搭建了，整个过程还是比较顺利的。</p>
-<p>进入 clone 下来的 <code>onpremise</code> 目录依次执行</p>
-<ol>
-<li>创建对应的目录  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p data/&#123;sentry,postgres&#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="Nginx配置upstream实现负载均衡"><a href="#Nginx配置upstream实现负载均衡" class="headerlink" title="Nginx配置upstream实现负载均衡"></a>Nginx配置upstream实现负载均衡</h2><p>假设Nginx没有只只能代理一台服务器的话，那它也不可能像今天这么火。Nginx能够配置代理多台服务器。当一台服务器宕机之后。仍能保持系统可用。详细配置步骤例如以下：</p>
+<ul>
+<li><p>在http节点下，加入upstream节点。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">upstream spinglee &#123; </span><br><span class="line">      server 10.0.6.108:7080; </span><br><span class="line">      server 10.0.0.85:8980; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-</ol>
-<ol start="2">
-<li><p>获取项目的 key</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash  docker-compose run --rm web config generate-secret-key</span><br></pre></td></tr></table></figure>
-<p><img src="https://lccdn.phphub.org/uploads/images/201703/29/5978/cl5ribeIo5.png" alt="file"></p>
-<p>复制获取到的 key 字符串</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim docker-compose.yml</span><br></pre></td></tr></table></figure>
-<p>插入 docker-compose.yml 文件中<br><img src="https://lccdn.phphub.org/uploads/images/201703/29/5978/MI7aJM7jbz.png" alt="file"></p>
+<li><p>将server节点下的location节点中的proxy_pass配置为：http:// + upstream名称，即“<a href="http://spinglee”" target="_blank" rel="noopener">http://spinglee”</a>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">location / &#123; </span><br><span class="line">               root  html; </span><br><span class="line">               index  index.html index.htm; </span><br><span class="line">               proxy_pass http://spinglee; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如今负载均衡初步完毕了。upstream依照轮询（默认）方式进行负载，每一个请求按时间顺序逐一分配到不同的后端服务器。假设后端服务器down掉。能自己主动剔除。尽管这样的方式简便、成本低廉。但缺点是：可靠性低和负载分配不均衡。</li>
+</ul>
 </li>
-<li><p>创建项目的 superuser</p>
+</ul>
+<p>适用于图片服务器集群和纯静态页面服务器集群。</p>
+<h2 id="除此之外，upstream还有其他的分配策略，分别例如以下："><a href="#除此之外，upstream还有其他的分配策略，分别例如以下：" class="headerlink" title="除此之外，upstream还有其他的分配策略，分别例如以下："></a>除此之外，upstream还有其他的分配策略，分别例如以下：</h2><ul>
+<li>weight（权重）<br>指定轮询几率，weight和訪问比率成正比，用于后端服务器性能不均的情况。例如以下所看到的。10.0.0.88的訪问比率要比10.0.0.77的訪问比率高一倍。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">upstream spinglee&#123; </span><br><span class="line">      server 10.0.0.77 weight=5; </span><br><span class="line">      server 10.0.0.88 weight=10; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>ip_hash（訪问ip）</p>
+<p>每一个请求按訪问ip的hash结果分配。这样每一个訪客固定訪问一个后端服务器，能够解决session的问题。</p>
 </li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose run --rm web upgrade</span><br></pre></td></tr></table></figure>
-<p>该过程会让你输入 用户邮箱 和密码 一路走下去 即可。</p>
-<ol start="4">
-<li>开启 sentry 服务</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
-<p>这时候输入你的 http:://ip:9000 即可进入你的 sentry</p>
-<h2 id="4、简单配置"><a href="#4、简单配置" class="headerlink" title="4、简单配置"></a>4、简单配置</h2><p>登陆以后 右上角有 New Project</p>
-<p><img src="https://lccdn.phphub.org/uploads/images/201703/29/5978/KqiVNsRUJb.png" alt="file"></p>
-<p><img src="https://lccdn.phphub.org/uploads/images/201703/29/5978/XRkeqwvTDh.png" alt="file"></p>
-<p><img src="https://lccdn.phphub.org/uploads/images/201703/29/5978/C480PIRJ5n.png" alt="file"></p>
-<p>体验 sentry 带来的快感吧！（本文完）</p>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">upstream spinglee&#123; </span><br><span class="line">      ip_hash; </span><br><span class="line">      server 10.0.0.10:8080; </span><br><span class="line">      server 10.0.0.11:8080; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>fair（第三方）</li>
+</ul>
+<p>按后端服务器的响应时间来分配请求。响应时间短的优先分配。</p>
+<p>与weight分配策略相似。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> upstream spinglee&#123;      </span><br><span class="line">      server 10.0.0.10:8080; </span><br><span class="line">      server 10.0.0.11:8080; </span><br><span class="line">      fair; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>url_hash（第三方）</li>
+</ul>
+<p>按訪问url的hash结果来分配请求，使每一个url定向到同一个后端服务器。后端服务器为缓存时比較有效。</p>
+<p>注意：在upstream中加入hash语句。server语句中不能写入weight等其他的參数，hash_method是使用的hash算法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">upstream spinglee&#123; </span><br><span class="line">      server 10.0.0.10:7777; </span><br><span class="line">      server 10.0.0.11:8888; </span><br><span class="line">      hash $request_uri; </span><br><span class="line">      hash_method crc32; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="upstream还能够为每一个设备设置状态值，这些状态值的含义分别例如以下："><a href="#upstream还能够为每一个设备设置状态值，这些状态值的含义分别例如以下：" class="headerlink" title="upstream还能够为每一个设备设置状态值，这些状态值的含义分别例如以下："></a>upstream还能够为每一个设备设置状态值，这些状态值的含义分别例如以下：</h2><ul>
+<li><p>down 表示单前的server临时不參与负载.</p>
+</li>
+<li><p>weight 默觉得1.weight越大，负载的权重就越大。</p>
+</li>
+<li><p>max_fails ：同意请求失败的次数默觉得1.当超过最大次数时，返回proxy_next_upstream 模块定义的错误.</p>
+</li>
+<li><p>fail_timeout : max_fails次失败后。暂停的时间。</p>
+</li>
+<li><p>backup： 其他全部的非backup机器down或者忙的时候，请求backup机器。所以这台机器压力会最轻。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">upstream spinglee&#123; #定义负载均衡设备的Ip及设备状态 </span><br><span class="line">      ip_hash; </span><br><span class="line">      server 10.0.0.11:9090 down; </span><br><span class="line">      server 10.0.0.11:8080 weight=2; </span><br><span class="line">      server 10.0.0.11:6060; </span><br><span class="line">      server 10.0.0.11:7070 backup; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 
       
     </div>
@@ -385,14 +382,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/04/03/hexo-github/" rel="next" title="基于Hexo+gitbub快速搭建自己的博客">
+                <i class="fa fa-chevron-left"></i> 基于Hexo+gitbub快速搭建自己的博客
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/03/hexo-github/" rel="prev" title="基于Hexo+gitbub快速搭建自己的博客">
-                基于Hexo+gitbub快速搭建自己的博客 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/20/nginx-params/" rel="prev" title="nginx  常用配置(转)">
+                nginx  常用配置(转) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -527,7 +528,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、-安装-docker"><span class="nav-number">1.</span> <span class="nav-text">1、 安装 docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、安装-docker-compose"><span class="nav-number">2.</span> <span class="nav-text">2、安装 docker-compose</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、-正式搭建sentry"><span class="nav-number">3.</span> <span class="nav-text">3、 正式搭建sentry</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、简单配置"><span class="nav-number">4.</span> <span class="nav-text">4、简单配置</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx配置upstream实现负载均衡"><span class="nav-number">1.</span> <span class="nav-text">Nginx配置upstream实现负载均衡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#除此之外，upstream还有其他的分配策略，分别例如以下："><span class="nav-number">2.</span> <span class="nav-text">除此之外，upstream还有其他的分配策略，分别例如以下：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#upstream还能够为每一个设备设置状态值，这些状态值的含义分别例如以下："><span class="nav-number">3.</span> <span class="nav-text">upstream还能够为每一个设备设置状态值，这些状态值的含义分别例如以下：</span></a></li></ol></div>
             
 
           </div>

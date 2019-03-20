@@ -243,6 +243,315 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/20/nginx-params/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="springlee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/3699948?s=400&u=d38df3f75e632cbdcd135872bb8ca7a049b7cf75&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一叶知秋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/20/nginx-params/" itemprop="url">nginx  常用配置(转)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-20T10:39:20+08:00">
+                2019-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>接上一篇文章，将server节点下的location节点中的proxy_pass配置为：http:// + upstream名称，即“<a href="http://spinglee”" target="_blank" rel="noopener">http://spinglee”</a>.</li>
+</ul>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"># 通过 gzip 压缩页面</span><br><span class="line">gzip on;</span><br><span class="line">gzip_min_length 1k;</span><br><span class="line">gzip_buffers 4 16k;</span><br><span class="line">#gzip_http_version 1.0;</span><br><span class="line">gzip_comp_level 2;</span><br><span class="line">gzip_types text/plain application/javascript application/x-javascript text/css application/xml text/javascript application/x-httpd-php image/jpeg image/gif image/png;</span><br><span class="line">gzip_vary off;</span><br><span class="line">gzip_disable &quot;MSIE [1-6]\.&quot;;</span><br><span class="line"></span><br><span class="line">upstream springlee &#123;</span><br><span class="line">    # 通过 IP:Port 连接</span><br><span class="line">    server 127.0.0.1:5200 weight=5 max_fails=3 fail_timeout=30s;</span><br><span class="line">    # 通过 UnixSocket Stream 连接，小诀窍：将socket文件放在/dev/shm目录下，可获得更好的性能</span><br><span class="line">    #server unix:/xxxpath/laravel-s-test/storage/laravels.sock weight=5 max_fails=3 fail_timeout=30s;</span><br><span class="line">    #server 192.168.1.1:5200 weight=3 max_fails=3 fail_timeout=30s;</span><br><span class="line">    #server 192.168.1.2:5200 backup;</span><br><span class="line">    keepalive 16;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    # 别忘了绑Host哟</span><br><span class="line">    server_name springlee.com;</span><br><span class="line">    root /xxxpath/laravel-s-test/public;</span><br><span class="line">    access_log /yyypath/log/nginx/$server_name.access.log  main;</span><br><span class="line">    autoindex off;</span><br><span class="line">    index index.html index.htm;</span><br><span class="line">    # Nginx处理静态资源(建议开启gzip)，springlee处理动态资源。</span><br><span class="line">    location / &#123;</span><br><span class="line">        try_files $uri $uri/ @springlee;</span><br><span class="line">    &#125;</span><br><span class="line">    # 当请求PHP文件时直接响应404，防止暴露public/*.php</span><br><span class="line">    #location ~* \.php$ &#123;</span><br><span class="line">    #    return 404;</span><br><span class="line">    #&#125;</span><br><span class="line">    location @laravels &#123;</span><br><span class="line">        # proxy_connect_timeout 60s;</span><br><span class="line">        # proxy_send_timeout 60s;</span><br><span class="line">        # proxy_read_timeout 120s;</span><br><span class="line">        proxy_http_version 1.1;</span><br><span class="line">        proxy_set_header Connection &quot;&quot;;</span><br><span class="line">        proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">        proxy_set_header X-Real-PORT $remote_port;</span><br><span class="line">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">        proxy_set_header Host $http_host;</span><br><span class="line">        proxy_set_header Scheme $scheme;</span><br><span class="line">        proxy_set_header Server-Protocol $server_protocol;</span><br><span class="line">        proxy_set_header Server-Name $server_name;</span><br><span class="line">        proxy_set_header Server-Addr $server_addr;</span><br><span class="line">        proxy_set_header Server-Port $server_port;</span><br><span class="line">        proxy_pass http://springlee;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Gzip-参数说明"><a href="#Gzip-参数说明" class="headerlink" title="Gzip 参数说明"></a>Gzip 参数说明</h2><ul>
+<li><p>第1行：开启Gzip</p>
+</li>
+<li><p>第2行：不压缩临界值，大于1K的才压缩，一般不用改</p>
+</li>
+<li><p>第3行：buffer，就是，嗯，算了不解释了，不用改</p>
+</li>
+<li><p>第4行：用了反向代理的话，末端通信是HTTP/1.0，有需求的应该也不用看我这科普文了；有这句的话注释了就行了，默认是HTTP/1.1</p>
+</li>
+<li><p>第5行：压缩级别，1-10，数字越大压缩的越好，时间也越长，看心情随便改吧</p>
+</li>
+<li><p>第6行：进行压缩的文件类型，缺啥补啥就行了，JavaScript有两种写法，最好都写上吧，总有人抱怨js文件没有压缩，其实多写一种格式application/javascript 就行了</p>
+</li>
+<li><p>第7行：跟Squid等缓存服务有关，on的话会在Header里增加”Vary: Accept-Encoding”，我不需要这玩意，自己对照情况看着办吧</p>
+</li>
+<li><p>第8行：IE6对Gzip不怎么友好，不给它Gzip了</p>
+</li>
+</ul>
+<h2 id="Nginx-参数说明"><a href="#Nginx-参数说明" class="headerlink" title="Nginx 参数说明"></a>Nginx 参数说明</h2>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/19/nginx-upstream/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="springlee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/3699948?s=400&u=d38df3f75e632cbdcd135872bb8ca7a049b7cf75&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一叶知秋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/19/nginx-upstream/" itemprop="url">nginx 负载均衡</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-19T09:06:25+08:00">
+                2019-03-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Nginx配置upstream实现负载均衡"><a href="#Nginx配置upstream实现负载均衡" class="headerlink" title="Nginx配置upstream实现负载均衡"></a>Nginx配置upstream实现负载均衡</h2><p>假设Nginx没有只只能代理一台服务器的话，那它也不可能像今天这么火。Nginx能够配置代理多台服务器。当一台服务器宕机之后。仍能保持系统可用。详细配置步骤例如以下：</p>
+<ul>
+<li><p>在http节点下，加入upstream节点。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">upstream spinglee &#123; </span><br><span class="line">      server 10.0.6.108:7080; </span><br><span class="line">      server 10.0.0.85:8980; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将server节点下的location节点中的proxy_pass配置为：http:// + upstream名称，即“<a href="http://spinglee”" target="_blank" rel="noopener">http://spinglee”</a>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">location / &#123; </span><br><span class="line">               root  html; </span><br><span class="line">               index  index.html index.htm; </span><br><span class="line">               proxy_pass http://spinglee; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如今负载均衡初步完毕了。upstream依照轮询（默认）方式进行负载，每一个请求按时间顺序逐一分配到不同的后端服务器。假设后端服务器down掉。能自己主动剔除。尽管这样的方式简便、成本低廉。但缺点是：可靠性低和负载分配不均衡。</li>
+</ul>
+</li>
+</ul>
+<p>适用于图片服务器集群和纯静态页面服务器集群。</p>
+<h2 id="除此之外，upstream还有其他的分配策略，分别例如以下："><a href="#除此之外，upstream还有其他的分配策略，分别例如以下：" class="headerlink" title="除此之外，upstream还有其他的分配策略，分别例如以下："></a>除此之外，upstream还有其他的分配策略，分别例如以下：</h2><ul>
+<li>weight（权重）<br>指定轮询几率，weight和訪问比率成正比，用于后端服务器性能不均的情况。例如以下所看到的。10.0.0.88的訪问比率要比10.0.0.77的訪问比率高一倍。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">upstream spinglee&#123; </span><br><span class="line">      server 10.0.0.77 weight=5; </span><br><span class="line">      server 10.0.0.88 weight=10; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>ip_hash（訪问ip）</p>
+<p>每一个请求按訪问ip的hash结果分配。这样每一个訪客固定訪问一个后端服务器，能够解决session的问题。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">upstream spinglee&#123; </span><br><span class="line">      ip_hash; </span><br><span class="line">      server 10.0.0.10:8080; </span><br><span class="line">      server 10.0.0.11:8080; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>fair（第三方）</li>
+</ul>
+<p>按后端服务器的响应时间来分配请求。响应时间短的优先分配。</p>
+<p>与weight分配策略相似。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> upstream spinglee&#123;      </span><br><span class="line">      server 10.0.0.10:8080; </span><br><span class="line">      server 10.0.0.11:8080; </span><br><span class="line">      fair; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>url_hash（第三方）</li>
+</ul>
+<p>按訪问url的hash结果来分配请求，使每一个url定向到同一个后端服务器。后端服务器为缓存时比較有效。</p>
+<p>注意：在upstream中加入hash语句。server语句中不能写入weight等其他的參数，hash_method是使用的hash算法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">upstream spinglee&#123; </span><br><span class="line">      server 10.0.0.10:7777; </span><br><span class="line">      server 10.0.0.11:8888; </span><br><span class="line">      hash $request_uri; </span><br><span class="line">      hash_method crc32; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="upstream还能够为每一个设备设置状态值，这些状态值的含义分别例如以下："><a href="#upstream还能够为每一个设备设置状态值，这些状态值的含义分别例如以下：" class="headerlink" title="upstream还能够为每一个设备设置状态值，这些状态值的含义分别例如以下："></a>upstream还能够为每一个设备设置状态值，这些状态值的含义分别例如以下：</h2><ul>
+<li><p>down 表示单前的server临时不參与负载.</p>
+</li>
+<li><p>weight 默觉得1.weight越大，负载的权重就越大。</p>
+</li>
+<li><p>max_fails ：同意请求失败的次数默觉得1.当超过最大次数时，返回proxy_next_upstream 模块定义的错误.</p>
+</li>
+<li><p>fail_timeout : max_fails次失败后。暂停的时间。</p>
+</li>
+<li><p>backup： 其他全部的非backup机器down或者忙的时候，请求backup机器。所以这台机器压力会最轻。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">upstream spinglee&#123; #定义负载均衡设备的Ip及设备状态 </span><br><span class="line">      ip_hash; </span><br><span class="line">      server 10.0.0.11:9090 down; </span><br><span class="line">      server 10.0.0.11:8080 weight=2; </span><br><span class="line">      server 10.0.0.11:6060; </span><br><span class="line">      server 10.0.0.11:7070 backup; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/03/hexo-github/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -570,7 +879,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
